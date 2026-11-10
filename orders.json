@@ -1,0 +1,62 @@
+[
+  {
+    "id": "#CLD-7798",
+    "timestamp": "2026-11-10T15:37:02.687Z",
+    "vertical": "FinTech & Crypto",
+    "volume": 5000,
+    "priorityTier": "TIER-X // SOVEREIGN ALLOCATION",
+    "clientMasked": "аи***",
+    "contactMasked": "ыуа***ыа",
+    "securityHash": "0x74E7...9513",
+    "filtersCount": 3,
+    "status": "[DISPATCHED TO TG BOT]"
+  },
+  {
+    "id": "#CLD-8492",
+    "timestamp": "2026-11-10T15:11:06.447Z",
+    "vertical": "FinTech & Crypto",
+    "volume": 450,
+    "priorityTier": "TIER-II // PRIORITY STREAM",
+    "clientMasked": "Va***ld",
+    "contactMasked": "@va***92",
+    "securityHash": "0x8F4A...C91E",
+    "filtersCount": 3,
+    "status": "[DISPATCHED TO TG BOT]"
+  },
+  {
+    "id": "#CLD-8371",
+    "timestamp": "2026-11-10T14:15:06.447Z",
+    "vertical": "Real Estate",
+    "volume": 1600,
+    "priorityTier": "TIER-III // DEDICATED NODE",
+    "clientMasked": "Em***te",
+    "contactMasked": "+971***44",
+    "securityHash": "0x3D1B...77A4",
+    "filtersCount": 3,
+    "status": "[DISPATCHED TO TG BOT]"
+  },
+  {
+    "id": "#CLD-8209",
+    "timestamp": "2026-11-10T12:19:06.447Z",
+    "vertical": "B2B Enterprise",
+    "volume": 900,
+    "priorityTier": "TIER-II // PRIORITY STREAM",
+    "clientMasked": "Kr***ms",
+    "contactMasked": "@kr***op",
+    "securityHash": "0xA92C...18F0",
+    "filtersCount": 2,
+    "status": "[DISPATCHED TO TG BOT]"
+  },
+  {
+    "id": "#CLD-8044",
+    "timestamp": "2026-11-10T09:49:06.447Z",
+    "vertical": "High-Ticket E-Com",
+    "volume": 3500,
+    "priorityTier": "TIER-X // SOVEREIGN ALLOCATION",
+    "clientMasked": "No***ux",
+    "contactMasked": "@no***es",
+    "securityHash": "0x5E77...D02B",
+    "filtersCount": 3,
+    "status": "[DISPATCHED TO TG BOT]"
+  }
+]

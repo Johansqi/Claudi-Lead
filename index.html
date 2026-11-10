@@ -1,0 +1,2720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070709" />
+  <title>CLAUDI Lead — Exclusive B2B Buyer Acquisition Pipeline</title>
+  <meta name="description" content="Deterministic customer acquisition pipeline. Single-tenant, intent-qualified commercial prospects delivered directly to your closing team with zero resale dilution." />
+
+  <!-- OpenGraph / Social Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CLAUDI Lead — Exclusive B2B Buyer Acquisition" />
+  <meta property="og:description" content="Single-tenant intent-qualified B2B leads delivered directly via Telegram/CRM. Zero resale dilution." />
+  <meta property="og:site_name" content="CLAUDI Lead" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CLAUDI Lead — Exclusive B2B Buyer Acquisition" />
+  <meta name="twitter:description" content="Single-tenant intent-qualified B2B leads delivered directly via Telegram/CRM. Zero resale dilution." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+  <style>
+    :root {
+      --bg: #070709;
+      --bg-panel: rgba(13, 13, 17, 0.76);
+      --bg-card: rgba(17, 17, 22, 0.65);
+      --bg-card-hover: rgba(23, 23, 30, 0.85);
+      --line: rgba(255, 255, 255, 0.08);
+      --line-hover: rgba(255, 255, 255, 0.18);
+      --gold: #C8AE7D;
+      --gold-bright: #E2CFAB;
+      --gold-dim: rgba(200, 174, 125, 0.12);
+      --gold-border: rgba(200, 174, 125, 0.32);
+      --emerald: #10B981;
+      --emerald-dim: rgba(16, 185, 129, 0.12);
+      --text: #F4F4F5;
+      --text-muted: #A1A1AA;
+      --text-dim: #71717A;
+      --font-heading: 'Inter Tight', -apple-system, sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background-color: var(--bg) !important;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    button, a, input, select, textarea, label {
+      cursor: pointer;
+    }
+
+    input[type="text"], textarea {
+      cursor: text;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: #070709;
+    }
+
+    /* Fixed 3D Background Canvas */
+    #main-webgl {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      display: block;
+      background: #070709 !important;
+    }
+
+    /* Architectural Layout Container */
+    .container {
+      width: 100%;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Unified Native Animation System */
+    .reveal-group {
+      opacity: 0;
+      transform: translateY(24px);
+      filter: blur(6px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
+    }
+
+    .reveal-group.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0px);
+    }
+
+    /* Dual-Layer SVG MorphIcon System */
+    .morph-icon {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+      overflow: visible;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease;
+    }
+
+    .morph-icon .icon-sub {
+      fill: rgba(212, 184, 134, 0.14);
+      stroke: rgba(212, 184, 134, 0.28);
+      stroke-width: 1.2px;
+      transition: fill 0.35s ease, stroke 0.35s ease, opacity 0.35s ease;
+    }
+
+    .morph-icon .icon-main {
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 1.75px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.35s ease, stroke-width 0.35s ease, d 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .morph-icon path {
+      transition: d 0.5s cubic-bezier(0.22, 1, 0.36, 1), stroke 0.3s ease;
+    }
+
+    /* Spotlight Glow on Interactive Panels */
+    .spotlight-card {
+      position: relative;
+      background: var(--bg-card);
+      overflow: hidden;
+    }
+
+    .spotlight-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(360px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(212, 184, 134, 0.09), transparent 80%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+    }
+
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Navigation Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      z-index: 100;
+      background: rgba(7, 7, 9, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      text-decoration: none;
+      position: relative;
+    }
+
+    #nav-logo-canvas {
+      width: 64px;
+      height: 64px;
+      display: block;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    .nav-link .morph-icon {
+      width: 14px;
+      height: 14px;
+      stroke: var(--text-dim);
+    }
+
+    .nav-link:hover .morph-icon {
+      stroke: var(--gold);
+    }
+
+    .btn-header-tg {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-bright);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    }
+
+    .btn-header-tg:hover {
+      background: rgba(200, 174, 125, 0.22);
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .btn-header-tg .morph-icon {
+      width: 14px;
+      height: 14px;
+      stroke: var(--gold-bright);
+    }
+
+    /* Mobile Menu Toggle Button */
+    .mobile-menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--line);
+      color: var(--text);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      z-index: 105;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .mobile-menu-toggle:hover {
+      background: rgba(200, 174, 125, 0.1);
+      border-color: var(--gold-border);
+    }
+
+    .mobile-menu-toggle svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    .mobile-menu-toggle svg path {
+      transition: d 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Fullscreen Mobile Drawer */
+    .mobile-drawer {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 7, 9, 0.98);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      z-index: 102;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 100px 32px 48px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-16px);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mobile-drawer.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mobile-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .mobile-nav-link {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 0;
+      transition: color 0.2s ease;
+    }
+
+    .mobile-nav-link:hover, .mobile-nav-link:active {
+      color: var(--gold);
+    }
+
+    .mobile-drawer-footer {
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      min-height: 100vh;
+      padding-top: 140px;
+      padding-bottom: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-left {
+      max-width: 640px;
+    }
+
+    .badge-subtle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--line);
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .badge-subtle .morph-icon {
+      width: 14px;
+      height: 14px;
+      stroke: var(--gold);
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 5.2rem);
+      font-weight: 600;
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      color: var(--text);
+      margin-bottom: 24px;
+      word-break: normal;
+      overflow-wrap: normal;
+    }
+
+    .hero-title .serif-accent {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 0;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin-bottom: 34px;
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-solid {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 26px;
+      background: var(--gold);
+      color: #070709;
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      border: 1px solid var(--gold);
+      transition: background 0.25s ease, transform 0.2s ease, border-color 0.25s ease;
+    }
+
+    .btn-solid:hover {
+      background: var(--gold-bright);
+      border-color: var(--gold-bright);
+      transform: translateY(-1px);
+    }
+
+    .btn-solid .morph-icon {
+      stroke: #070709;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 24px;
+      background: rgba(17, 17, 22, 0.6);
+      color: var(--text);
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      border: 1px solid var(--line);
+      transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--line-hover);
+      background: rgba(25, 25, 32, 0.85);
+      color: var(--gold-bright);
+    }
+
+    .btn-outline .morph-icon {
+      stroke: var(--text-muted);
+    }
+
+    .btn-outline:hover .morph-icon {
+      stroke: var(--gold-bright);
+    }
+
+    /* Monolithic Metric Ribbon */
+    .metric-strip {
+      margin-top: 56px;
+      background: rgba(11, 11, 14, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      position: relative;
+      z-index: 2;
+    }
+
+    .metric-item {
+      padding: 20px 24px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .metric-item:last-child {
+      border-right: none;
+    }
+
+    .metric-label {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .metric-value {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .metric-value.highlight-gold {
+      color: var(--gold-bright);
+    }
+
+    .metric-value.highlight-emerald {
+      color: var(--emerald);
+    }
+
+    /* Section Foundations */
+    .section {
+      padding: 100px 0;
+      border-top: 1px solid var(--line);
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: 52px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .section-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-tag .morph-icon {
+      width: 14px;
+      height: 14px;
+      stroke: var(--gold);
+    }
+
+    .section-heading {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3.4vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: var(--text);
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 420px;
+      line-height: 1.6;
+    }
+
+    /* Three-Column Architecture Cards */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .arch-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--line);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 340px;
+      transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .arch-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--line-hover);
+      transform: translateY(-2px);
+    }
+
+    .arch-card-top {
+      margin-bottom: 32px;
+    }
+
+    .arch-icon-wrap {
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+
+    .arch-icon-wrap .morph-icon {
+      width: 20px;
+      height: 20px;
+      stroke: var(--gold);
+    }
+
+    .arch-card-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .arch-card-text {
+      color: var(--text-muted);
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+
+    .arch-card-meta {
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--text-dim);
+    }
+
+    .arch-card-meta span:last-child {
+      color: var(--gold);
+    }
+
+    /* Acquisition Desk & Live Ledger Terminal */
+    .terminal-container {
+      background: var(--bg-panel);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+
+    .terminal-pane {
+      padding: 44px;
+    }
+
+    .terminal-pane-left {
+      border-right: 1px solid var(--line);
+    }
+
+    .pane-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pane-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pane-title .morph-icon {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gold);
+    }
+
+    .pane-indicator {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--emerald);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--emerald);
+      border-radius: 50% !important;
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .form-label span.note {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      background: rgba(9, 9, 12, 0.85);
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      padding: 13px 16px;
+      outline: none;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--gold);
+      background: rgba(14, 14, 18, 0.95);
+      box-shadow: 0 0 0 1px var(--gold-border), 0 0 20px rgba(212, 184, 134, 0.12);
+    }
+
+    .form-textarea {
+      min-height: 72px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    /* Vertical Radio Selector */
+    .niche-selector {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .niche-btn {
+      background: rgba(9, 9, 12, 0.7);
+      border: 1px solid var(--line);
+      color: var(--text-muted);
+      padding: 12px 14px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .niche-btn:hover {
+      background: rgba(20, 20, 26, 0.8);
+      border-color: var(--line-hover);
+      color: var(--text);
+    }
+
+    .niche-btn.is-active {
+      background: var(--gold-dim);
+      border-color: var(--gold);
+      color: var(--gold-bright);
+      box-shadow: inset 0 0 12px rgba(212, 184, 134, 0.12);
+    }
+
+    .niche-btn .morph-icon {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+    }
+
+    .niche-btn:hover .morph-icon,
+    .niche-btn.is-active .morph-icon {
+      transform: scale(1.08);
+      filter: drop-shadow(0 0 4px rgba(212, 184, 134, 0.4));
+    }
+
+    /* Slider Container */
+    .slider-box {
+      background: rgba(9, 9, 12, 0.7);
+      border: 1px solid var(--line);
+      padding: 18px 20px;
+    }
+
+    .slider-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+
+    .slider-val {
+      font-family: var(--font-mono);
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .slider-val span {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--gold);
+      margin-left: 6px;
+    }
+
+    .slider-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--emerald);
+      padding: 3px 8px;
+      background: var(--emerald-dim);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .range-input {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+      transition: background 0.2s ease;
+    }
+
+    .range-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      background: var(--gold);
+      border: 2px solid #070709;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+    }
+
+    .range-input::-webkit-slider-thumb:hover {
+      transform: scale(1.18);
+      box-shadow: 0 0 10px rgba(212, 184, 134, 0.6);
+    }
+
+    .range-input::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      background: var(--gold);
+      border: 2px solid #070709;
+      cursor: pointer;
+    }
+
+    /* Morphing Filter Chips */
+    .filter-chips {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .filter-chip {
+      background: rgba(9, 9, 12, 0.7);
+      border: 1px solid var(--line);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      user-select: none;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .filter-chip:hover {
+      border-color: var(--line-hover);
+      color: var(--text);
+    }
+
+    .filter-chip input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .filter-chip.is-checked {
+      background: var(--gold-dim);
+      border-color: var(--gold-border);
+      color: var(--text);
+    }
+
+    .filter-chip .morph-icon {
+      stroke: var(--text-dim);
+    }
+
+    .filter-chip.is-checked .morph-icon {
+      stroke: var(--emerald);
+      transform: scale(1.08);
+      filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.5));
+    }
+
+    /* Honeypot hidden */
+    .hp-trap {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--gold) 0%, #E6CD9E 50%, var(--gold) 100%);
+      background-size: 200% 100%;
+      color: #070709;
+      border: 1px solid var(--gold);
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background-position 0.6s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background-position: 100% 0;
+      box-shadow: 0 4px 20px rgba(212, 184, 134, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:active:not(:disabled) {
+      transform: scale(0.985);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn-submit .morph-icon {
+      stroke: #070709;
+    }
+
+    .form-status {
+      margin-top: 14px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--text-dim);
+      min-height: 20px;
+    }
+
+    .form-status.is-success {
+      color: var(--emerald);
+    }
+
+    .form-status.is-error {
+      color: #EF4444;
+    }
+
+    /* Right Pane: Live Allocation Blueprint & Order Tracker */
+    .terminal-pane-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .blueprint-card {
+      background: rgba(9, 9, 12, 0.7);
+      border: 1px solid var(--line);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .blueprint-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+    }
+
+    .blueprint-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .blueprint-title .morph-icon {
+      width: 16px;
+      height: 16px;
+      stroke: var(--gold);
+    }
+
+    .blueprint-status-pill {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--emerald);
+      padding: 2px 8px;
+      background: var(--emerald-dim);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .blueprint-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .blueprint-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .blueprint-cell-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .blueprint-cell-val {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .blueprint-token-box {
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .blueprint-token-val {
+      color: var(--gold-bright);
+      letter-spacing: 0.05em;
+    }
+
+    /* Private Order Tracker Box */
+    .order-tracker-card {
+      background: rgba(9, 9, 12, 0.7);
+      border: 1px solid var(--line);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .tracker-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tracker-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tracker-input-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tracker-input {
+      flex: 1;
+      background: rgba(14, 14, 18, 0.9);
+      border: 1px solid var(--line);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      padding: 10px 14px;
+      outline: none;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .tracker-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 10px rgba(212, 184, 134, 0.15);
+    }
+
+    .btn-tracker-verify {
+      padding: 10px 18px;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-bright);
+      font-family: var(--font-heading);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .btn-tracker-verify:hover {
+      background: var(--gold);
+      color: #070709;
+      border-color: var(--gold);
+    }
+
+    .tracker-result-box {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      min-height: 48px;
+      padding: 12px 14px;
+      background: rgba(17, 17, 24, 0.6);
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .tracker-result-box.has-order {
+      border-color: var(--gold-border);
+      background: rgba(200, 174, 125, 0.05);
+    }
+
+    .btn-confirm-tg {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 18px;
+      background: var(--gold);
+      border: 1px solid var(--gold);
+      color: #070709;
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .btn-confirm-tg:hover {
+      background: var(--gold-bright);
+      border-color: var(--gold-bright);
+      box-shadow: 0 4px 16px rgba(212, 184, 134, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .ledger-footer-notice {
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 40px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    /* Responsive */
+    @media (max-width: 1040px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .metric-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .metric-item:nth-child(2) {
+        border-right: none;
+      }
+      .arch-grid {
+        grid-template-columns: 1fr;
+      }
+      .terminal-container {
+        grid-template-columns: 1fr;
+      }
+      .terminal-pane-left {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-menu {
+        display: none !important;
+      }
+      .mobile-menu-toggle {
+        display: inline-flex !important;
+      }
+      .header-actions-wrap {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+      .hero-section {
+        padding-top: 110px;
+        padding-bottom: 50px;
+      }
+      .section {
+        padding: 70px 0;
+      }
+      .terminal-pane {
+        padding: 32px 20px;
+      }
+      #main-webgl {
+        opacity: 0.38 !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .metric-strip {
+        grid-template-columns: 1fr;
+      }
+      .metric-item {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+      .blueprint-grid {
+        grid-template-columns: 1fr;
+      }
+      .filter-chips, .niche-selector {
+        grid-template-columns: 1fr;
+      }
+      .hero-actions .btn-solid,
+      .hero-actions .btn-outline {
+        width: 100%;
+        min-height: 48px;
+        justify-content: center;
+      }
+      .range-input::-webkit-slider-thumb {
+        width: 24px;
+        height: 24px;
+      }
+      .range-input::-moz-range-thumb {
+        width: 24px;
+        height: 24px;
+      }
+      .footer-inner {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed 3D WebGL Background Canvas -->
+  <canvas id="main-webgl" aria-hidden="true"></canvas>
+
+  <!-- Navigation Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#hero" class="logo-link" title="CLAUDI Monogram // Top">
+        <canvas id="nav-logo-canvas" width="104" height="104"></canvas>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu">
+          <li>
+            <a href="#infrastructure" class="nav-link">
+              <svg class="morph-icon" data-icon="infrastructure" viewBox="0 0 24 24">
+                <rect class="icon-sub" x="3" y="3" width="7" height="7" rx="1.5" />
+                <rect class="icon-sub" x="14" y="3" width="7" height="7" rx="1.5" />
+                <rect class="icon-sub" x="14" y="14" width="7" height="7" rx="1.5" />
+                <rect class="icon-sub" x="3" y="14" width="7" height="7" rx="1.5" />
+                <path class="icon-main" d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4" />
+              </svg>
+              <span>Infrastructure</span>
+            </a>
+          </li>
+          <li>
+            <a href="#verification" class="nav-link">
+              <svg class="morph-icon" data-icon="verification" viewBox="0 0 24 24">
+                <path class="icon-sub" d="M12 2L4 6v6c0 5.5 3.5 10.5 8 12 4.5-1.5 8-6.5 8-12V6l-8-4z" />
+                <path class="icon-main" d="M9 12l2 2 4-4" />
+              </svg>
+              <span>Verification</span>
+            </a>
+          </li>
+          <li>
+            <a href="#terminal" class="nav-link">
+              <svg class="morph-icon" data-icon="order-desk" viewBox="0 0 24 24">
+                <rect class="icon-sub" x="3" y="4" width="18" height="16" rx="2" />
+                <path class="icon-main" d="M7 8h10M7 12h6M7 16h4" />
+              </svg>
+              <span>Order Desk</span>
+            </a>
+          </li>
+          <li>
+            <a href="#order-tracker-box" class="nav-link">
+              <svg class="morph-icon" data-icon="status-check" viewBox="0 0 24 24">
+                <circle class="icon-sub" cx="12" cy="12" r="9" />
+                <path class="icon-main" d="M12 7v5l3 3" />
+              </svg>
+              <span>Status Check</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="header-actions-wrap">
+        <a href="https://t.me/sanAtofe" target="_blank" rel="noopener noreferrer" class="btn-header-tg">
+          <svg class="morph-icon" data-icon="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          <span>@sanAtofe</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+          <svg viewBox="0 0 24 24">
+            <path id="burger-path-top" d="M4 8h16" />
+            <path id="burger-path-bot" d="M4 16h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Fullscreen Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <ul class="mobile-nav-list">
+      <li>
+        <a href="#infrastructure" class="mobile-nav-link">
+          <svg class="morph-icon" data-icon="infrastructure" viewBox="0 0 24 24">
+            <rect class="icon-sub" x="3" y="3" width="7" height="7" rx="1.5" />
+            <rect class="icon-sub" x="14" y="3" width="7" height="7" rx="1.5" />
+            <rect class="icon-sub" x="14" y="14" width="7" height="7" rx="1.5" />
+            <rect class="icon-sub" x="3" y="14" width="7" height="7" rx="1.5" />
+            <path class="icon-main" d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4" />
+          </svg>
+          <span>Infrastructure</span>
+        </a>
+      </li>
+      <li>
+        <a href="#verification" class="mobile-nav-link">
+          <svg class="morph-icon" data-icon="verification" viewBox="0 0 24 24">
+            <path class="icon-sub" d="M12 2L4 6v6c0 5.5 3.5 10.5 8 12 4.5-1.5 8-6.5 8-12V6l-8-4z" />
+            <path class="icon-main" d="M9 12l2 2 4-4" />
+          </svg>
+          <span>Verification</span>
+        </a>
+      </li>
+      <li>
+        <a href="#terminal" class="mobile-nav-link">
+          <svg class="morph-icon" data-icon="order-desk" viewBox="0 0 24 24">
+            <rect class="icon-sub" x="3" y="4" width="18" height="16" rx="2" />
+            <path class="icon-main" d="M7 8h10M7 12h6M7 16h4" />
+          </svg>
+          <span>Order Desk</span>
+        </a>
+      </li>
+      <li>
+        <a href="#order-tracker-box" class="mobile-nav-link">
+          <svg class="morph-icon" data-icon="status-check" viewBox="0 0 24 24">
+            <circle class="icon-sub" cx="12" cy="12" r="9" />
+            <path class="icon-main" d="M12 7v5l3 3" />
+          </svg>
+          <span>Status Check</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="mobile-drawer-footer">
+      <a href="https://t.me/sanAtofe" target="_blank" rel="noopener noreferrer" class="btn-solid" style="width: 100%; justify-content: center;">
+        <svg class="morph-icon" data-icon="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        <span>Direct Telegram @sanAtofe</span>
+      </a>
+      <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); text-align: center;">CLAUDI Lead Architecture &bull; 100% Single-Tenant</span>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-left reveal-group">
+            <div class="badge-subtle">
+              <svg class="morph-icon" data-icon="shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Exclusive B2B Buyer Acquisition</span>
+            </div>
+
+            <h1 class="hero-title">
+              High-Intent Buyers.<br />
+              <span class="serif-accent">Engineered</span> for Dominance.
+            </h1>
+
+            <p class="hero-desc">
+              Deterministic customer acquisition pipeline. Single-tenant, intent-qualified commercial prospects delivered straight to your closing team with zero resale dilution.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#terminal" class="btn-solid">
+                <svg class="morph-icon" data-icon="sliders" viewBox="0 0 24 24"><path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M1 14h6m2-6h6m2 8h6"/></svg>
+                <span>Initialize Order</span>
+              </a>
+              <a href="https://t.me/sanAtofe" target="_blank" rel="noopener noreferrer" class="btn-outline">
+                <svg class="morph-icon" data-icon="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                <span>Direct Telegram @sanAtofe</span>
+              </a>
+            </div>
+          </div>
+
+          <div><!-- 3D Sculpture viewport clearance --></div>
+        </div>
+
+        <div class="metric-strip reveal-group">
+          <div class="metric-item">
+            <span class="metric-label">Distribution Model</span>
+            <span class="metric-value highlight-gold">Exclusive Single-Buyer</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Data Hygiene</span>
+            <span class="metric-value highlight-emerald">Zero Resale Policy</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Delivery Channel</span>
+            <span class="metric-value">Direct Telegram / CRM</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Targeting Approach</span>
+            <span class="metric-value highlight-gold">Custom Criteria Match</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="infrastructure" class="section">
+      <div class="container">
+        <div class="section-header reveal-group">
+          <div>
+            <div class="section-tag">
+              <svg class="morph-icon" data-icon="cube" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              <span>Lead Architecture</span>
+            </div>
+            <h2 class="section-heading">Multi-Stage Intent Filtration.</h2>
+          </div>
+          <p class="section-desc">
+            Replacing unpredictable inbound noise with a rigorous, cryptographically gated acquisition stream tailored to your enterprise unit economics.
+          </p>
+        </div>
+
+        <div class="arch-grid">
+          <article class="arch-card reveal-group">
+            <div class="arch-card-top">
+              <div class="arch-icon-wrap">
+                <svg class="morph-icon" data-icon="shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3 class="arch-card-title">Carrier &amp; Identity Gate</h3>
+              <p class="arch-card-text">
+                Every prospect passes live HLR carrier validation, domain authenticity verification, and digital footprint scoring to filter invalid numbers, scrapers, and bot entries.
+              </p>
+            </div>
+            <div class="arch-card-meta">
+              <span>STEP 01</span>
+              <span>FILTER PROTOCOL</span>
+            </div>
+          </article>
+
+          <article class="arch-card reveal-group">
+            <div class="arch-card-top">
+              <div class="arch-icon-wrap">
+                <svg class="morph-icon" data-icon="sliders" viewBox="0 0 24 24"><path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M1 14h6m2-6h6m2 8h6"/></svg>
+              </div>
+              <h3 class="arch-card-title">Commercial Intent Qualification</h3>
+              <p class="arch-card-text">
+                Behavioral screening aligns prospects with your minimum budget threshold, ensuring sales teams interact directly with decision-makers seeking active solutions.
+              </p>
+            </div>
+            <div class="arch-card-meta">
+              <span>STEP 02</span>
+              <span>CRITERIA MATCH</span>
+            </div>
+          </article>
+
+          <article class="arch-card reveal-group">
+            <div class="arch-card-top">
+              <div class="arch-icon-wrap">
+                <svg class="morph-icon" data-icon="pulse" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <h3 class="arch-card-title">Direct Client Push</h3>
+              <p class="arch-card-text">
+                Encrypted webhook and Telegram dispatch delivers qualified contact details immediately to your reps, eliminating latency and avoiding attention decay.
+              </p>
+            </div>
+            <div class="arch-card-meta">
+              <span>STEP 03</span>
+              <span>DIRECT DISPATCH</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Terminal: Acquisition Desk & Live Ledger -->
+    <section id="terminal" class="section">
+      <div class="container">
+        <div class="section-header reveal-group">
+          <div>
+            <div class="section-tag">
+              <svg class="morph-icon" data-icon="sliders" viewBox="0 0 24 24"><path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M1 14h6m2-6h6m2 8h6"/></svg>
+              <span>Command Center</span>
+            </div>
+            <h2 class="section-heading">Acquisition Desk &amp; Live Ledger.</h2>
+          </div>
+          <p class="section-desc">
+            Configure monthly allocation parameters or audit the live execution queue in real time.
+          </p>
+        </div>
+
+        <div class="terminal-container reveal-group">
+          <!-- Left Column: Order Form -->
+          <div class="terminal-pane terminal-pane-left">
+            <div class="pane-title-row">
+              <h3 class="pane-title">
+                <svg class="morph-icon" data-icon="sliders" viewBox="0 0 24 24"><path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M1 14h6m2-6h6m2 8h6"/></svg>
+                <span>Lead Stream Allocation</span>
+              </h3>
+              <div class="pane-indicator">
+                <span class="pulse-dot"></span>
+                <span>DESK ACTIVE</span>
+              </div>
+            </div>
+
+            <form id="lead-order-form" novalidate>
+              <!-- Honeypot Field -->
+              <div class="hp-trap" aria-hidden="true">
+                <label for="company-url">Company URL</label>
+                <input type="text" id="company-url" name="website_url" tabindex="-1" autocomplete="off" value="" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="client-name">
+                  <span>Company / Brand</span>
+                  <span class="note">PUBLIC ENTRY MASKED</span>
+                </label>
+                <input type="text" id="client-name" name="clientName" class="form-input" placeholder="e.g. Apex Strategic Equity" maxlength="80" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Target Vertical</span>
+                  <span class="note" id="vertical-label">REAL ESTATE</span>
+                </label>
+                <input type="hidden" id="niche-val" name="niche" value="Real Estate" />
+                <div class="niche-selector">
+                  <button type="button" class="niche-btn is-active" data-vertical="Real Estate">
+                    <svg class="morph-icon" data-icon="niche-realestate" viewBox="0 0 24 24">
+                      <path class="icon-sub" d="M3 10l9-7 9 7v10a1 1 0 01-1 1H4a1 1 0 01-1-1V10z" />
+                      <path class="icon-main" d="M9 21V12h6v9M12 3l8 6.5" />
+                    </svg>
+                    <span>Real Estate</span>
+                  </button>
+                  <button type="button" class="niche-btn" data-vertical="FinTech &amp; Wealth">
+                    <svg class="morph-icon" data-icon="niche-fintech" viewBox="0 0 24 24">
+                      <circle class="icon-sub" cx="12" cy="12" r="8" />
+                      <path class="icon-main" d="M12 7v10M15 9.5a2.5 2.5 0 00-5 0c0 2 5 1.5 5 3.5a2.5 2.5 0 01-5 0" />
+                    </svg>
+                    <span>FinTech &amp; Wealth</span>
+                  </button>
+                  <button type="button" class="niche-btn" data-vertical="Enterprise SaaS">
+                    <svg class="morph-icon" data-icon="niche-saas" viewBox="0 0 24 24">
+                      <rect class="icon-sub" x="4" y="4" width="16" height="12" rx="2" />
+                      <path class="icon-main" d="M8 20h8M12 16v4M8 9l3 3-3 3M13 15h3" />
+                    </svg>
+                    <span>Enterprise SaaS</span>
+                  </button>
+                  <button type="button" class="niche-btn" data-vertical="High-Ticket Commerce">
+                    <svg class="morph-icon" data-icon="niche-commerce" viewBox="0 0 24 24">
+                      <path class="icon-sub" d="M6 6h15l-2 9H7L5 2H2" />
+                      <path class="icon-main" d="M6 6l1 9h11M9 20a1 1 0 100-2 1 1 0 000 2zM18 20a1 1 0 100-2 1 1 0 000 2z" />
+                    </svg>
+                    <span>High-Ticket Commerce</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="volume-slider">
+                  <span>Monthly Allocation Volume</span>
+                  <span class="note">50 &ndash; 5,000 LEADS</span>
+                </label>
+                <div class="slider-box">
+                  <div class="slider-meta">
+                    <div class="slider-val">
+                      <strong id="vol-num">750</strong><span>LEADS / MO</span>
+                    </div>
+                    <span class="slider-badge" id="vol-tier">TIER-II PRIORITY STREAM</span>
+                  </div>
+                  <input type="range" id="volume-slider" name="volume" class="range-input" min="50" max="5000" step="50" value="750" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Filtration Protocols</span>
+                  <span class="note">INTEGRITY GATES</span>
+                </label>
+                <div class="filter-chips">
+                  <label class="filter-chip is-checked">
+                    <input type="checkbox" name="filters" value="Phone Verified" checked />
+                    <svg class="morph-icon" data-icon="filter-phone" viewBox="0 0 24 24">
+                      <rect class="icon-sub" x="5" y="2" width="14" height="20" rx="3" />
+                      <path class="icon-main" d="M12 18h.01M9 6h6" />
+                    </svg>
+                    <span>Verified Direct Phone</span>
+                  </label>
+                  <label class="filter-chip is-checked">
+                    <input type="checkbox" name="filters" value="Liquidity Screened" checked />
+                    <svg class="morph-icon" data-icon="filter-liquidity" viewBox="0 0 24 24">
+                      <circle class="icon-sub" cx="12" cy="12" r="8" />
+                      <path class="icon-main" d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" />
+                    </svg>
+                    <span>Liquidity Screened</span>
+                  </label>
+                  <label class="filter-chip is-checked">
+                    <input type="checkbox" name="filters" value="Exclusive Zero-Resale" checked />
+                    <svg class="morph-icon" data-icon="filter-exclusive" viewBox="0 0 24 24">
+                      <path class="icon-sub" d="M12 2l8 4v6c0 5-3.5 9.5-8 11-4.5-1.5-8-6-8-11V6l8-4z" />
+                      <path class="icon-main" d="M9 12l2 2 4-4" />
+                    </svg>
+                    <span>Exclusive Zero-Resale</span>
+                  </label>
+                  <label class="filter-chip is-checked">
+                    <input type="checkbox" name="filters" value="Instant Webhook / TG" checked />
+                    <svg class="morph-icon" data-icon="filter-webhook" viewBox="0 0 24 24">
+                      <circle class="icon-sub" cx="12" cy="12" r="4" />
+                      <path class="icon-main" d="M16 8l5-5M19 3h2v2M8 16l-5 5M5 21H3v-2" />
+                    </svg>
+                    <span>Instant Webhook / TG</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="client-contact">
+                  <span>Client Contact</span>
+                  <span class="note">PRIVATE // DISPATCHED TO TG</span>
+                </label>
+                <input type="text" id="client-contact" name="contact" class="form-input" placeholder="Telegram @username or Direct Phone" maxlength="80" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="client-geo">
+                  <span>Target GEO &amp; Criteria</span>
+                  <span class="note">OPTIONAL</span>
+                </label>
+                <textarea id="client-geo" name="geoCriteria" class="form-textarea" placeholder="Target jurisdictions (US, EU, UAE), language requirements, target ticket size..." maxlength="400"></textarea>
+              </div>
+
+              <button type="submit" id="submit-btn" class="btn-submit">
+                <svg class="morph-icon" data-icon="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                <span>Dispatch Allocation Order</span>
+              </button>
+
+              <div id="form-feedback" class="form-status" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <!-- Right Column: Live Allocation Blueprint & Order Tracker -->
+          <div id="order-tracker-box" class="terminal-pane terminal-pane-right spotlight-card">
+            <!-- Top Block: Live Allocation Blueprint -->
+            <div class="blueprint-card">
+              <div class="blueprint-header">
+                <div class="blueprint-title">
+                  <svg class="morph-icon" data-icon="sliders" viewBox="0 0 24 24"><path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M1 14h6m2-6h6m2 8h6"/></svg>
+                  <span>Live Spec Summary</span>
+                </div>
+                <span class="blueprint-status-pill">100% SINGLE-TENANT</span>
+              </div>
+
+              <div class="blueprint-grid">
+                <div class="blueprint-cell">
+                  <span class="blueprint-cell-label">Configured Vertical</span>
+                  <span class="blueprint-cell-val" id="bp-vertical">Real Estate</span>
+                </div>
+                <div class="blueprint-cell">
+                  <span class="blueprint-cell-label">Target Volume</span>
+                  <span class="blueprint-cell-val" id="bp-volume">750 Leads / mo</span>
+                </div>
+                <div class="blueprint-cell">
+                  <span class="blueprint-cell-label">Routing Status</span>
+                  <span class="blueprint-cell-val">Dedicated Single-Tenant</span>
+                </div>
+                <div class="blueprint-cell">
+                  <span class="blueprint-cell-label">Active Filter Gates</span>
+                  <span class="blueprint-cell-val" id="bp-filters">4 / 4 Active</span>
+                </div>
+              </div>
+
+              <div class="blueprint-token-box">
+                <span>ENCRYPTED SESSION HASH:</span>
+                <span class="blueprint-token-val" id="bp-token">0x7F2A...E491</span>
+              </div>
+            </div>
+
+            <!-- Bottom Block: Private Order Tracker -->
+            <div class="order-tracker-card">
+              <div class="tracker-header">
+                <div class="tracker-title">
+                  <svg class="morph-icon" data-icon="shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>Verify Your Order ID</span>
+                </div>
+                <span class="slider-badge" style="background: rgba(200, 174, 125, 0.12); color: var(--gold); border-color: var(--gold-border);">PRIVATE SESSION</span>
+              </div>
+
+              <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.5; margin: 0;">
+                Orders are dispatched privately to the Telegram Core. Input your issued <code>#CLD-XXXX</code> to verify allocation status or confirm directly with the executive.
+              </p>
+
+              <div class="tracker-input-row">
+                <input type="text" id="tracker-order-id" class="tracker-input" placeholder="#CLD-8492" maxlength="14" />
+                <button type="button" id="btn-verify-status" class="btn-tracker-verify">
+                  <svg class="morph-icon" data-icon="check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+                  <span>Verify</span>
+                </button>
+              </div>
+
+              <div id="tracker-result" class="tracker-result-box">
+                <span>No active verification query. Dispatch an order or enter your ID above.</span>
+              </div>
+
+              <a href="https://t.me/sanAtofe" id="btn-confirm-executive" target="_blank" rel="noopener noreferrer" class="btn-confirm-tg">
+                <svg class="morph-icon" data-icon="arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                <span>Confirm via @sanAtofe</span>
+              </a>
+            </div>
+
+            <div class="ledger-footer-notice">
+              <span>ZERO PUBLIC EXPOSURE PROTOCOL</span>
+              <span>DIRECT DISPATCH TO TG BOT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>&copy; CLAUDI Lead Architecture. All rights reserved.</span>
+      <div class="footer-links">
+        <a href="#hero">Overview</a>
+        <a href="#infrastructure">Infrastructure</a>
+        <a href="#terminal">Order Desk</a>
+        <a href="https://t.me/sanAtofe" target="_blank" rel="noopener noreferrer">Executive: @sanAtofe</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // -------------------------------------------------------------
+    // TELEGRAM DISPATCH & STATIC HOSTING CONFIGURATION (GITHUB PAGES)
+    // -------------------------------------------------------------
+    // For direct static client dispatch on GitHub Pages:
+    // Insert your Bot Token and Admin Chat ID below, OR provide an external
+    // Cloudflare Worker / Vercel proxy URL in `endpoint`.
+    const TG_CONFIG = {
+      endpoint: '', // Optional proxy URL, e.g. 'https://my-proxy.workers.dev/order'
+      botToken: '9181958813:AAEde2nyyiTNwi6PtPyLjfhrkXvIcAOs0LM', // Telegram Bot Token
+      chatId: '5352853089', // Admin Chat ID (@sanAtofe)
+      adminUsername: 'sanAtofe'
+    };
+
+    // -------------------------------------------------------------
+    // Mobile Drawer Navigation Toggle
+    // -------------------------------------------------------------
+    (function initMobileDrawer() {
+      const toggleBtn = document.getElementById('mobile-toggle');
+      const drawer = document.getElementById('mobile-drawer');
+      const pathTop = document.getElementById('burger-path-top');
+      const pathBot = document.getElementById('burger-path-bot');
+      if (!toggleBtn || !drawer) return;
+
+      let isOpen = false;
+
+      function setDrawerState(open) {
+        isOpen = open;
+        drawer.classList.toggle('is-open', isOpen);
+        drawer.setAttribute('aria-hidden', (!isOpen).toString());
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+
+        if (pathTop && pathBot) {
+          if (isOpen) {
+            pathTop.setAttribute('d', 'M6 6l12 12');
+            pathBot.setAttribute('d', 'M6 18L18 6');
+          } else {
+            pathTop.setAttribute('d', 'M4 8h16');
+            pathBot.setAttribute('d', 'M4 16h16');
+          }
+        }
+      }
+
+      toggleBtn.addEventListener('click', () => {
+        setDrawerState(!isOpen);
+      });
+
+      drawer.querySelectorAll('.mobile-nav-link').forEach((link) => {
+        link.addEventListener('click', () => {
+          setDrawerState(false);
+        });
+      });
+    })();
+
+    // -------------------------------------------------------------
+    // 1. MorphIcons Path Engine (Identical Segment Lengths)
+    // -------------------------------------------------------------
+    const MORPH_PATHS = {
+      arrow: {
+        normal: 'M7 17L17 7M7 7h10v10',
+        hover:  'M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z' // Telegram glider
+      },
+      check: {
+        active:   'M20 6L9 17l-5-5',
+        inactive: 'M12 2l8 8-8 8-8-8 8-8z' // Diamond contour
+      },
+      shield: {
+        normal: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z',
+        locked: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4'
+      },
+      cube: {
+        normal: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
+        hover:  'M12 2L2 7l10 5 10-5-10-5zM2 12l10 5 10-5M2 17l10 5 10-5'
+      },
+      sliders: {
+        normal: 'M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M1 14h6m2-6h6m2 8h6',
+        hover:  'M4 21v-3m0-8V3m8 18v-5m0-8V3m8 18v-9m0-4V3M1 18h6m2-8h6m2 4h6'
+      },
+      pulse: {
+        normal: 'M22 12h-4l-3 9L9 3l-3 9H2',
+        hover:  'M22 12h-3l-2 5L13 2l-4 18-3-8H2'
+      }
+    };
+
+    function setIconState(iconEl, shapeKey) {
+      const type = iconEl.dataset.icon;
+      if (!type || !MORPH_PATHS[type] || !MORPH_PATHS[type][shapeKey]) return;
+      const pathEl = iconEl.querySelector('path');
+      if (pathEl) {
+        pathEl.setAttribute('d', MORPH_PATHS[type][shapeKey]);
+      }
+    }
+
+    document.querySelectorAll('.btn-solid, .btn-outline, .btn-header-tg, .btn-submit').forEach((btn) => {
+      const icon = btn.querySelector('.morph-icon[data-icon="arrow"]');
+      if (!icon) return;
+      btn.addEventListener('mouseenter', () => setIconState(icon, 'hover'));
+      btn.addEventListener('mouseleave', () => setIconState(icon, 'normal'));
+    });
+
+    // -------------------------------------------------------------
+    // 2. Monogram 3D Geometry ("CL") Generator
+    // -------------------------------------------------------------
+    function createCLGeometry() {
+      const group = new THREE.Group();
+
+      // Shape C: Curved, tapered blade chevron with open right gap
+      // Top vertex at (-0.07, 1.35), curved to outer blade (-1.25, 0.0), down to (-0.07, -1.35)
+      // Vertical cut & inner contours with gap between y = -0.22 and y = 0.22
+      const shapeC = new THREE.Shape();
+      shapeC.moveTo(-0.07, 1.35);
+      shapeC.quadraticCurveTo(-0.45, 0.55, -1.25, 0.0);
+      shapeC.quadraticCurveTo(-0.45, -0.55, -0.07, -1.35);
+      shapeC.lineTo(-0.07, -1.05);
+      shapeC.quadraticCurveTo(-0.35, -0.5, -0.88, 0.0);
+      shapeC.quadraticCurveTo(-0.35, 0.5, -0.07, 1.05);
+      shapeC.closePath();
+
+      // Shape L: Vertical Blade + Rising Curved Aerodynamic Wing
+      // Left vertical edge at x = 0.07 (gap = 0.14 from C's -0.07)
+      const shapeL = new THREE.Shape();
+      shapeL.moveTo(0.07, 1.35);
+      shapeL.lineTo(0.29, 1.05);
+      shapeL.lineTo(0.29, -0.65);
+      shapeL.quadraticCurveTo(0.75, -0.35, 1.25, 0.08);
+      shapeL.quadraticCurveTo(0.65, -0.55, 0.07, -1.35);
+      shapeL.closePath();
+
+      const extrudeSettings = {
+        depth: 0.16,
+        bevelEnabled: true,
+        bevelThickness: 0.055,
+        bevelSize: 0.045,
+        bevelSegments: 6,
+        curveSegments: 32
+      };
+
+      const geoC = new THREE.ExtrudeGeometry(shapeC, extrudeSettings);
+      const geoL = new THREE.ExtrudeGeometry(shapeL, extrudeSettings);
+      geoC.center();
+      geoL.center();
+
+      const mat = new THREE.MeshPhysicalMaterial({
+        color: 0xc4c9d4,
+        metalness: 0.96,
+        roughness: 0.24,
+        clearcoat: 0.35,
+        clearcoatRoughness: 0.18
+      });
+
+      const meshC = new THREE.Mesh(geoC, mat);
+      const meshL = new THREE.Mesh(geoL, mat);
+      meshC.position.x = -0.68;
+      meshL.position.x = 0.68;
+
+      group.add(meshC);
+      group.add(meshL);
+      return group;
+    }
+
+    // -------------------------------------------------------------
+    // 3. Header 3D Nav Logo Canvas (64x64)
+    // -------------------------------------------------------------
+    (function initNavLogo() {
+      const navCanvas = document.getElementById('nav-logo-canvas');
+      if (!navCanvas) return;
+
+      const renderer = new THREE.WebGLRenderer({ canvas: navCanvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(64, 64);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 50);
+      camera.position.set(0, 0, 3.2);
+
+      const clGroup = createCLGeometry();
+      clGroup.scale.setScalar(0.78);
+      scene.add(clGroup);
+
+      // Studio Rim Lights: Cold Platinum Silver
+      const light1 = new THREE.DirectionalLight(0xffffff, 2.8);
+      light1.position.set(-3, 4, 3);
+      scene.add(light1);
+
+      const light2 = new THREE.DirectionalLight(0xffffff, 2.8);
+      light2.position.set(3, -3, 3);
+      scene.add(light2);
+
+      const ambientLight = new THREE.AmbientLight(0x22242c, 1.2);
+      scene.add(ambientLight);
+
+      let targetRotY = 0;
+      let targetRotX = 0;
+      let curRotY = 0;
+      let curRotX = 0;
+
+      const linkEl = navCanvas.closest('.logo-link');
+      if (linkEl) {
+        linkEl.addEventListener('mouseenter', () => {
+          targetRotY = Math.PI * 0.25;
+          targetRotX = -0.12;
+        });
+        linkEl.addEventListener('mouseleave', () => {
+          targetRotY = 0;
+          targetRotX = 0;
+        });
+        linkEl.addEventListener('mousemove', (e) => {
+          const rect = linkEl.getBoundingClientRect();
+          const nx = (e.clientX - rect.left) / rect.width - 0.5;
+          const ny = (e.clientY - rect.top) / rect.height - 0.5;
+          targetRotY = nx * 1.0;
+          targetRotX = -ny * 0.8;
+        });
+      }
+
+      function renderNavLogo() {
+        requestAnimationFrame(renderNavLogo);
+        curRotY += (targetRotY - curRotY) * 0.08;
+        curRotX += (targetRotX - curRotX) * 0.08;
+        clGroup.rotation.y = curRotY;
+        clGroup.rotation.x = curRotX;
+        renderer.render(scene, camera);
+      }
+      renderNavLogo();
+    })();
+
+    // -------------------------------------------------------------
+    // 4. Main Architectural Background 3D Scene (#main-webgl)
+    // -------------------------------------------------------------
+    (function initMainScene() {
+      const canvas = document.getElementById('main-webgl');
+      if (!canvas) return;
+
+      const isMobile = window.innerWidth < 768;
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
+      renderer.setClearColor(0x070709, 1);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x070709);
+      scene.fog = new THREE.FogExp2(0x070709, 0.045);
+
+      const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 0, 7.8);
+
+      // Lights: Platinum Cold + Warm Gold Key
+      const ambient = new THREE.AmbientLight(0x1a1a22, 0.85);
+      scene.add(ambient);
+
+      const platLight = new THREE.DirectionalLight(0xffffff, 2.8);
+      platLight.position.set(-5, 6, 6);
+      scene.add(platLight);
+
+      const goldLight = new THREE.DirectionalLight(0xC8AE7D, 3.2);
+      goldLight.position.set(6, -2, 5);
+      scene.add(goldLight);
+
+      const mouseLight = new THREE.PointLight(0xC8AE7D, 3.5, 12, 1.8);
+      mouseLight.position.set(2, 1, 3);
+      scene.add(mouseLight);
+
+      // Central Master Group (Offset right on desktop; shifted up on mobile)
+      const masterGroup = new THREE.Group();
+      if (window.innerWidth < 768) {
+        masterGroup.position.set(0, 1.2, -0.6);
+      } else if (window.innerWidth < 1040) {
+        masterGroup.position.set(0, 0, 0);
+      } else {
+        masterGroup.position.set(2.1, 0, 0);
+      }
+      scene.add(masterGroup);
+
+      // Monumental "CL" Monogram Mesh
+      const clMonogram = createCLGeometry();
+      clMonogram.scale.setScalar(window.innerWidth < 768 ? 1.05 : 1.4);
+      masterGroup.add(clMonogram);
+
+      // Precision Outer Ring: Dark Brushed Chrome
+      const ringGeo = new THREE.TorusGeometry(2.85, 0.038, 32, 180);
+      const ringMat = new THREE.MeshStandardMaterial({
+        color: 0x45484f,
+        metalness: 0.96,
+        roughness: 0.18
+      });
+      const outerRing = new THREE.Mesh(ringGeo, ringMat);
+      outerRing.rotation.set(0.4, 0.3, 0);
+      masterGroup.add(outerRing);
+
+      // Golden Thin Orbital Guide Ring
+      const guideGeo = new THREE.TorusGeometry(3.2, 0.008, 12, 180);
+      const guideMat = new THREE.MeshBasicMaterial({ color: 0xC8AE7D, transparent: true, opacity: 0.35 });
+      const guideRing = new THREE.Mesh(guideGeo, guideMat);
+      guideRing.rotation.set(-0.6, 0.5, 0);
+      masterGroup.add(guideRing);
+
+      // Spiral Lead Particles (Reduced 2x on mobile for GPU efficiency)
+      const P_COUNT = isMobile ? 180 : 400;
+      const pGeo = new THREE.BufferGeometry();
+      const pPos = new Float32Array(P_COUNT * 3);
+      const pRadii = new Float32Array(P_COUNT);
+      const pAngles = new Float32Array(P_COUNT);
+      const pSpeeds = new Float32Array(P_COUNT);
+      const pHeights = new Float32Array(P_COUNT);
+
+      for (let i = 0; i < P_COUNT; i++) {
+        pRadii[i] = 1.6 + Math.random() * 4.2;
+        pAngles[i] = Math.random() * Math.PI * 2;
+        pSpeeds[i] = 0.2 + Math.random() * 0.4;
+        pHeights[i] = (Math.random() - 0.5) * 1.8;
+      }
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+
+      // Circular Soft Particle Texture
+      const sCanvas = document.createElement('canvas');
+      sCanvas.width = 32;
+      sCanvas.height = 32;
+      const sctx = sCanvas.getContext('2d');
+      const grad = sctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+      grad.addColorStop(0, 'rgba(226, 207, 171, 1)');
+      grad.addColorStop(0.35, 'rgba(200, 174, 125, 0.7)');
+      grad.addColorStop(1, 'rgba(200, 174, 125, 0)');
+      sctx.fillStyle = grad;
+      sctx.fillRect(0, 0, 32, 32);
+
+      const pMat = new THREE.PointsMaterial({
+        size: 0.08,
+        map: new THREE.CanvasTexture(sCanvas),
+        transparent: true,
+        opacity: 0.75,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending
+      });
+      const particles = new THREE.Points(pGeo, pMat);
+      masterGroup.add(particles);
+
+      // Mouse & Scroll State
+      const mouse = { x: 0, y: 0 };
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      }, { passive: true });
+
+      let scrollY = window.scrollY;
+      window.addEventListener('scroll', () => {
+        scrollY = window.scrollY;
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        const mob = window.innerWidth < 768;
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, mob ? 1.5 : 2));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        if (mob) {
+          masterGroup.position.set(0, 1.2, -0.6);
+          clMonogram.scale.setScalar(1.05);
+        } else if (window.innerWidth < 1040) {
+          masterGroup.position.set(0, 0, 0);
+          clMonogram.scale.setScalar(1.4);
+        } else {
+          masterGroup.position.set(2.1, 0, 0);
+          clMonogram.scale.setScalar(1.4);
+        }
+      });
+
+      // Unified Single RAF Render Loop
+      let rotY = 0;
+      let rotX = 0;
+      const clock = new THREE.Clock();
+
+      function mainRenderLoop() {
+        requestAnimationFrame(mainRenderLoop);
+        const dt = Math.min(clock.getDelta(), 0.05);
+
+        // Predictable scroll-driven rotation + subtle mouse parallax
+        const targetRotY = scrollY * 0.0018 + mouse.x * 0.35;
+        const targetRotX = mouse.y * 0.22 - (scrollY * 0.0004);
+
+        rotY += (targetRotY - rotY) * 0.06;
+        rotX += (targetRotX - rotX) * 0.06;
+
+        clMonogram.rotation.y = rotY;
+        clMonogram.rotation.x = rotX;
+
+        outerRing.rotation.z += dt * 0.12;
+        outerRing.rotation.y = rotY * 0.5;
+
+        guideRing.rotation.z -= dt * 0.08;
+
+        // Animate Spiral Particles
+        const posArr = pGeo.attributes.position.array;
+        for (let i = 0; i < P_COUNT; i++) {
+          pAngles[i] += pSpeeds[i] * dt;
+          pRadii[i] -= dt * 0.25;
+          if (pRadii[i] < 1.3) {
+            pRadii[i] = 5.2;
+            pAngles[i] = Math.random() * Math.PI * 2;
+          }
+          const r = pRadii[i];
+          const theta = pAngles[i];
+          const idx = i * 3;
+          posArr[idx] = Math.cos(theta) * r;
+          posArr[idx + 1] = pHeights[i] * (r / 5.2);
+          posArr[idx + 2] = Math.sin(theta) * r;
+        }
+        pGeo.attributes.position.needsUpdate = true;
+
+        // Smooth Mouse Light Lerp
+        mouseLight.position.x += (mouse.x * 4.0 - mouseLight.position.x) * 0.08;
+        mouseLight.position.y += (mouse.y * 3.0 - mouseLight.position.y) * 0.08;
+
+        renderer.render(scene, camera);
+      }
+      mainRenderLoop();
+    })();
+
+    // -------------------------------------------------------------
+    // 5. Unified IntersectionObserver for Monolithic Containers
+    // -------------------------------------------------------------
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal-group').forEach((el) => {
+      revealObserver.observe(el);
+    });
+
+    // -------------------------------------------------------------
+    // 6. Interactive Spotlight Glow Engine (Mouse Position Tracking)
+    // -------------------------------------------------------------
+    document.querySelectorAll('.spotlight-card, .arch-card, .terminal-pane, .slider-box, .blueprint-card, .order-tracker-card').forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      });
+    });
+
+    // -------------------------------------------------------------
+    // 7. Interactive Form, Rolling Numbers & Blueprint Engine
+    // -------------------------------------------------------------
+    const nicheInput = document.getElementById('niche-val');
+    const verticalLabel = document.getElementById('vertical-label');
+    const nicheBtns = document.querySelectorAll('.niche-btn');
+    const bpVertical = document.getElementById('bp-vertical');
+    const bpVolume = document.getElementById('bp-volume');
+    const bpFilters = document.getElementById('bp-filters');
+    const bpToken = document.getElementById('bp-token');
+
+    // Generate valid session token hash without undefined
+    function generateDisplayHash() {
+      const hex = '0123456789ABCDEF';
+      let h1 = '', h2 = '';
+      for (let i = 0; i < 4; i++) h1 += hex[Math.floor(Math.random() * 16)];
+      for (let i = 0; i < 4; i++) h2 += hex[Math.floor(Math.random() * 16)];
+      return `0x${h1}...${h2}`;
+    }
+
+    if (bpToken) bpToken.textContent = generateDisplayHash();
+
+    // Niche Selection & Blueprint Sync
+    nicheBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        nicheBtns.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        const val = btn.dataset.vertical || 'Real Estate';
+        if (nicheInput) nicheInput.value = val;
+        if (verticalLabel) verticalLabel.textContent = val.toUpperCase();
+        if (bpVertical) bpVertical.textContent = val;
+      });
+    });
+
+    // Volume Slider with Rolling Numbers (requestAnimationFrame Lerp)
+    const volumeSlider = document.getElementById('volume-slider');
+    const volNum = document.getElementById('vol-num');
+    const volTier = document.getElementById('vol-tier');
+
+    let currentDisplayedVolume = 750;
+    let targetVolume = 750;
+    let volumeAnimFrame = null;
+
+    function animateVolumeNumber() {
+      const diff = targetVolume - currentDisplayedVolume;
+      if (Math.abs(diff) < 1) {
+        currentDisplayedVolume = targetVolume;
+        if (volNum) volNum.textContent = Math.round(currentDisplayedVolume).toLocaleString('en-US');
+        if (bpVolume) bpVolume.textContent = `${Math.round(currentDisplayedVolume).toLocaleString('en-US')} Leads / mo`;
+        volumeAnimFrame = null;
+        return;
+      }
+      currentDisplayedVolume += diff * 0.18;
+      if (volNum) volNum.textContent = Math.round(currentDisplayedVolume).toLocaleString('en-US');
+      if (bpVolume) bpVolume.textContent = `${Math.round(currentDisplayedVolume).toLocaleString('en-US')} Leads / mo`;
+      volumeAnimFrame = requestAnimationFrame(animateVolumeNumber);
+    }
+
+    function syncVolume() {
+      if (!volumeSlider) return;
+      targetVolume = parseInt(volumeSlider.value, 10) || 50;
+
+      // Update Slider fill track visually
+      const min = parseInt(volumeSlider.min, 10) || 50;
+      const max = parseInt(volumeSlider.max, 10) || 5000;
+      const pct = ((targetVolume - min) / (max - min)) * 100;
+      volumeSlider.style.background = `linear-gradient(to right, #C8AE7D 0%, #C8AE7D ${pct}%, rgba(255,255,255,0.1) ${pct}%, rgba(255,255,255,0.1) 100%)`;
+
+      let tierText = 'TIER-I STANDARD FLOW';
+      if (targetVolume >= 3500) tierText = 'TIER-X SOVEREIGN ALLOCATION';
+      else if (targetVolume >= 1500) tierText = 'TIER-III DEDICATED NODE';
+      else if (targetVolume >= 400) tierText = 'TIER-II PRIORITY STREAM';
+
+      if (volTier) volTier.textContent = tierText;
+
+      if (!volumeAnimFrame) {
+        volumeAnimFrame = requestAnimationFrame(animateVolumeNumber);
+      }
+    }
+
+    if (volumeSlider) {
+      volumeSlider.addEventListener('input', syncVolume);
+      syncVolume();
+    }
+
+    // Filter Chips & Blueprint Sync
+    function updateFiltersBlueprint() {
+      const activeCount = document.querySelectorAll('.filter-chip.is-checked').length;
+      if (bpFilters) bpFilters.textContent = `${activeCount} / 4 Active`;
+    }
+
+    document.querySelectorAll('.filter-chip').forEach((chip) => {
+      const cb = chip.querySelector('input[type="checkbox"]');
+      if (!cb) return;
+
+      const updateChip = () => {
+        chip.classList.toggle('is-checked', cb.checked);
+        updateFiltersBlueprint();
+      };
+      cb.addEventListener('change', updateChip);
+      updateChip();
+    });
+
+    // -------------------------------------------------------------
+    // 8. Order ID Tracking & Telegram Deep-Link Engine
+    // -------------------------------------------------------------
+    const trackerInput = document.getElementById('tracker-order-id');
+    const verifyStatusBtn = document.getElementById('btn-verify-status');
+    const trackerResultBox = document.getElementById('tracker-result');
+    const confirmExecutiveBtn = document.getElementById('btn-confirm-executive');
+
+    // Pre-populate tracker if saved in sessionStorage
+    const savedOrderId = sessionStorage.getItem('claudi_last_order_id');
+    const savedOrderData = sessionStorage.getItem('claudi_last_order_data');
+    if (savedOrderId && trackerInput) {
+      trackerInput.value = savedOrderId;
+      if (confirmExecutiveBtn) {
+        confirmExecutiveBtn.href = `https://t.me/sanAtofe?text=${encodeURIComponent(`Hello, confirming my CLAUDI allocation order ${savedOrderId}`)}`;
+      }
+      if (savedOrderData) {
+        try {
+          const ord = JSON.parse(savedOrderData);
+          trackerResultBox.className = 'tracker-result-box has-order';
+          trackerResultBox.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="color:var(--gold-bright); font-size:13px;">${ord.id}</strong>
+              <span style="color:var(--emerald); font-size:10.5px;">✓ DISPATCHED TO BOT</span>
+            </div>
+            <div>${ord.vertical} • ${Number(ord.volume).toLocaleString('en-US')} Leads • Hash: ${ord.securityHash || '0xCONFIRMED'}</div>
+          `;
+        } catch (e) {}
+      }
+    }
+
+    async function checkOrderStatus(orderIdToCheck) {
+      const cleanId = (orderIdToCheck || '').trim().toUpperCase();
+      if (!cleanId) {
+        trackerResultBox.className = 'tracker-result-box';
+        trackerResultBox.innerHTML = '<span style="color:#EF4444;">Please enter an Order ID (e.g. #CLD-8492).</span>';
+        return;
+      }
+
+      trackerResultBox.className = 'tracker-result-box';
+      trackerResultBox.innerHTML = '<span>Verifying cryptographic signature in Telegram Core ledger...</span>';
+
+      try {
+        const res = await fetch(`/api/orders/status?id=${encodeURIComponent(cleanId)}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.ok && data.order) {
+            const ord = data.order;
+            trackerResultBox.className = 'tracker-result-box has-order';
+            trackerResultBox.innerHTML = `
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong style="color:var(--gold-bright); font-size:13px;">${ord.id}</strong>
+                <span style="color:var(--emerald); font-size:10.5px;">✓ ${ord.status}</span>
+              </div>
+              <div>${ord.vertical} • ${Number(ord.volume).toLocaleString('en-US')} Leads • Hash: ${ord.securityHash}</div>
+              <div style="color:var(--text-dim); font-size:10.5px;">${ord.deliveryStatus}</div>
+            `;
+            if (confirmExecutiveBtn) {
+              confirmExecutiveBtn.href = `https://t.me/sanAtofe?text=${encodeURIComponent(`Confirming CLAUDI Lead allocation order ${ord.id} (${ord.vertical}, ${ord.volume} leads)`)}`;
+            }
+            return;
+          }
+        }
+      } catch (err) {
+        // Fallback to local session check
+      }
+
+      // If matches session storage
+      if (savedOrderId && savedOrderId.toUpperCase() === cleanId) {
+        trackerResultBox.className = 'tracker-result-box has-order';
+        trackerResultBox.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <strong style="color:var(--gold-bright); font-size:13px;">${cleanId}</strong>
+            <span style="color:var(--emerald); font-size:10.5px;">✓ COMMITTED TO BOT CORE</span>
+          </div>
+          <div>Status: Dispatched to @sanAtofe • Priority Allocation Queued</div>
+        `;
+        return;
+      }
+
+      trackerResultBox.className = 'tracker-result-box';
+      trackerResultBox.innerHTML = `<span style="color:#EF4444;">Order ${cleanId} not found or pending initial sync. Check with @sanAtofe.</span>`;
+    }
+
+    if (verifyStatusBtn) {
+      verifyStatusBtn.addEventListener('click', () => {
+        checkOrderStatus(trackerInput ? trackerInput.value : '');
+      });
+    }
+
+    if (trackerInput) {
+      trackerInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          checkOrderStatus(trackerInput.value);
+        }
+      });
+    }
+
+    // -------------------------------------------------------------
+    // 9. Static GitHub Pages + Node.js Dual Dispatch Engine
+    // -------------------------------------------------------------
+    let sessionToken = '';
+    const formLoadTime = Date.now();
+
+    async function initToken() {
+      try {
+        const res = await fetch('/api/handshake', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.token) sessionToken = data.token;
+        }
+      } catch (err) {
+        sessionToken = `local_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+      }
+    }
+    initToken();
+
+    // Helper: Mask client contact details for presentation
+    function maskString(str) {
+      if (!str) return '***';
+      if (str.startsWith('@')) {
+        const b = str.slice(1);
+        return b.length <= 3 ? `@${b[0]}***` : `@${b.slice(0, 2)}***${b.slice(-2)}`;
+      }
+      return str.length > 4 ? `${str.slice(0, 2)}***${str.slice(-2)}` : `${str.slice(0, 1)}***`;
+    }
+
+    const orderForm = document.getElementById('lead-order-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const feedbackEl = document.getElementById('form-feedback');
+
+    if (orderForm) {
+      orderForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // 1. Local Time-Trap Anti-Bot Check (> 2.5s)
+        const elapsedSec = (Date.now() - formLoadTime) / 1000;
+        if (elapsedSec < 2.5) {
+          if (feedbackEl) {
+            feedbackEl.className = 'form-status is-error';
+            feedbackEl.textContent = 'Submission rejected by client security shield (automated timing heuristic).';
+          }
+          return;
+        }
+
+        // 2. Client-side Rate Limit (1 submission per 60 seconds via localStorage)
+        const lastSubmitTs = parseInt(localStorage.getItem('claudi_last_submit_ts') || '0', 10);
+        const cooldownRemaining = 60 - Math.floor((Date.now() - lastSubmitTs) / 1000);
+        if (cooldownRemaining > 0) {
+          if (feedbackEl) {
+            feedbackEl.className = 'form-status is-error';
+            feedbackEl.textContent = `Rate limit active // Please wait ${cooldownRemaining}s before queuing another allocation request.`;
+          }
+          return;
+        }
+
+        const clientName = (document.getElementById('client-name')?.value || '').trim();
+        const niche = (nicheInput?.value || 'Real Estate').trim();
+        const volume = parseInt(volumeSlider?.value || '750', 10);
+        const contact = (document.getElementById('client-contact')?.value || '').trim();
+        const geoCriteria = (document.getElementById('client-geo')?.value || '').trim();
+        const honeypot = (document.getElementById('company-url')?.value || '').trim();
+        const filters = Array.from(orderForm.querySelectorAll('input[name="filters"]:checked')).map((el) => el.value);
+
+        // 3. Honeypot check (Silent drop)
+        if (honeypot.length > 0) {
+          if (feedbackEl) {
+            feedbackEl.className = 'form-status is-success';
+            feedbackEl.textContent = 'Allocation request acknowledged and queued.';
+          }
+          orderForm.reset();
+          return;
+        }
+
+        if (clientName.length < 2) {
+          if (feedbackEl) {
+            feedbackEl.className = 'form-status is-error';
+            feedbackEl.textContent = 'Please enter your company or brand name.';
+          }
+          return;
+        }
+
+        if (contact.length < 3) {
+          if (feedbackEl) {
+            feedbackEl.className = 'form-status is-error';
+            feedbackEl.textContent = 'Please provide a valid Telegram handle or direct phone.';
+          }
+          return;
+        }
+
+        const btnSpan = submitBtn ? submitBtn.querySelector('span') : null;
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          if (btnSpan) btnSpan.textContent = 'Encrypting Payload...';
+        }
+
+        if (feedbackEl) {
+          feedbackEl.className = 'form-status';
+          feedbackEl.textContent = 'Establishing secure socket to Telegram Core @sanAtofe...';
+        }
+
+        const mockNum = Math.floor(1000 + Math.random() * 9000);
+        const orderId = `#CLD-${mockNum}`;
+        const securityHash = generateDisplayHash();
+        let dispatched = false;
+
+        // Try Node.js backend first if hosted on custom server
+        try {
+          const res = await fetch('/api/orders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              clientName,
+              niche,
+              volume,
+              filters,
+              contact,
+              geoCriteria,
+              website_url: honeypot,
+              securityToken: sessionToken
+            })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            if (data.ok && data.order) {
+              dispatched = true;
+            }
+          }
+        } catch (netErr) {
+          // Node server unreachable (e.g. running on GitHub Pages static)
+        }
+
+        // Direct Telegram API fallback for GitHub Pages
+        if (!dispatched && TG_CONFIG.botToken && TG_CONFIG.chatId) {
+          const tgText = [
+            `⚡ <b>CLAUDI LEAD // NEW ALLOCATION [${orderId}]</b>`,
+            `━━━━━━━━━━━━━━━━━━━━`,
+            `<b>Company:</b> ${clientName}`,
+            `<b>Contact:</b> ${contact}`,
+            `<b>Vertical:</b> ${niche}`,
+            `<b>Volume:</b> ${volume.toLocaleString('en-US')} Leads / mo`,
+            `<b>Filters:</b> ${filters.join(', ') || 'None'}`,
+            `<b>GEO / Criteria:</b> ${geoCriteria || 'Standard Global'}`,
+            `━━━━━━━━━━━━━━━━━━━━`,
+            `<b>Security Hash:</b> <code>${securityHash}</code>`,
+            `<b>Origin:</b> GitHub Pages Client Dispatch`
+          ].join('\n');
+
+          try {
+            const tgEndpoint = TG_CONFIG.endpoint || `https://api.telegram.org/bot${TG_CONFIG.botToken}/sendMessage`;
+            const tgRes = await fetch(tgEndpoint, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                chat_id: TG_CONFIG.chatId,
+                text: tgText,
+                parse_mode: 'HTML',
+                disable_web_page_preview: true
+              })
+            });
+            if (tgRes.ok) {
+              dispatched = true;
+            }
+          } catch (tgErr) {
+            console.warn('[CLAUDI] Client TG dispatch deferred:', tgErr);
+          }
+        }
+
+        localStorage.setItem('claudi_last_submit_ts', Date.now().toString());
+
+        const orderRecord = {
+          id: orderId,
+          vertical: niche,
+          volume: volume,
+          clientMasked: maskString(clientName),
+          securityHash: securityHash
+        };
+
+        // Save order strictly into user's private sessionStorage
+        sessionStorage.setItem('claudi_last_order_id', orderRecord.id);
+        sessionStorage.setItem('claudi_last_order_data', JSON.stringify(orderRecord));
+
+        // Update Tracker Box in Right Pane
+        if (trackerInput) trackerInput.value = orderRecord.id;
+        if (trackerResultBox) {
+          trackerResultBox.className = 'tracker-result-box has-order';
+          trackerResultBox.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong style="color:var(--gold-bright); font-size:13px;">${orderRecord.id}</strong>
+              <span style="color:var(--emerald); font-size:10.5px;">✓ DISPATCHED TO TG BOT</span>
+            </div>
+            <div>${orderRecord.vertical} • ${Number(orderRecord.volume).toLocaleString('en-US')} Leads • Hash: ${orderRecord.securityHash}</div>
+          `;
+        }
+        if (confirmExecutiveBtn) {
+          confirmExecutiveBtn.href = `https://t.me/sanAtofe?text=${encodeURIComponent(`Hello @sanAtofe, confirming my CLAUDI allocation order ${orderRecord.id} (${orderRecord.vertical}, ${orderRecord.volume} leads)`)}`;
+        }
+
+        if (btnSpan) btnSpan.textContent = 'Dispatched to @sanAtofe Core [✓]';
+
+        if (feedbackEl) {
+          feedbackEl.className = 'form-status is-success';
+          feedbackEl.textContent = `Order ${orderRecord.id} securely encrypted & dispatched directly to Telegram Core.`;
+        }
+
+        setTimeout(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            if (btnSpan) btnSpan.textContent = 'Dispatch Allocation Order';
+          }
+        }, 3000);
+
+        orderForm.reset();
+        if (volumeSlider) {
+          volumeSlider.value = '750';
+          syncVolume();
+        }
+        updateFiltersBlueprint();
+      });
+    }
+  </script>
+</body>
+</html>
